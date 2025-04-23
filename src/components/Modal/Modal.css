@@ -1,0 +1,120 @@
+/* Modal Component Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.modal-container {
+  background-color: white;
+  border-radius: var(--border-radius-md);
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--rays-navy);
+  color: white;
+  border-top-left-radius: var(--border-radius-md);
+  border-top-right-radius: var(--border-radius-md);
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+  margin-left: 15px;
+  transition: transform 0.2s;
+}
+
+.modal-close:hover {
+  transform: scale(1.2);
+}
+
+.modal-body {
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Close button at bottom */
+.close-button {
+  display: block;
+  margin: 1.5rem auto 0;
+  padding: 0.5rem 1.5rem;
+  background-color: var(--rays-navy);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.close-button:hover {
+  background-color: var(--rays-dark-navy);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .modal-container {
+    width: 95%;
+    max-height: 95vh;
+  }
+  
+  .modal-header h3 {
+    font-size: 1.1rem;
+  }
+  
+  .modal-body {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-header {
+    padding: 12px 15px;
+  }
+  
+  .modal-body {
+    padding: 12px;
+  }
+}

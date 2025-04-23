@@ -1,0 +1,120 @@
+/* PitcherInfo Component Styles */
+.pitcher {
+  padding: 1.25rem;
+  background-color: #f9f9f9;
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pitcher:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.pitcher-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pitcher-headshot {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--rays-navy);
+  flex-shrink: 0;
+  background-color: #fff;
+}
+
+.pitcher-headshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pitcher-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.pitcher h4 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  color: var(--rays-navy);
+  font-weight: 600;
+  border-bottom: 2px solid var(--rays-light-blue);
+  padding-bottom: 0.4rem;
+}
+
+.pitcher p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  display: flex;
+  justify-content: space-between;
+}
+
+.pitcher p strong {
+  color: var(--text-primary);
+}
+
+.pitcher-name {
+  font-weight: 600;
+  font-size: 1rem !important;
+  color: var(--rays-navy) !important;
+  margin-bottom: 0.25rem !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pitcher-summary {
+  font-size: 0.85rem !important;
+  margin-top: 0.25rem !important;
+  line-height: 1.4;
+}
+
+.pitcher-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+}
+
+.pitcher-stats p {
+  margin: 0;
+  padding: 0.4rem 0.6rem;
+  background-color: rgba(137, 188, 236, 0.15);
+  border-radius: 6px;
+  text-align: center;
+  transition: background-color 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pitcher-stats p:hover {
+  background-color: rgba(137, 188, 236, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .pitcher-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .pitcher-info {
+    width: 100%;
+  }
+  
+  .pitcher p {
+    justify-content: center;
+  }
+}

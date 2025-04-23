@@ -1,20 +1,37 @@
 import React, { useState, useEffect } from 'react'
-import PitcherInfo from './PitcherInfo'
-import GameDetails from './GameDetails'
-import Modal from './Modal'
-import { formatDate, getRaysOpponent, getPitcherData, fetchGameContent } from '../utils/dataUtils'
+import PitcherInfo from '../PitcherInfo/PitcherInfo'
+import GameDetails from '../GameDetails/GameDetails'
+import Modal from '../Modal/Modal'
+import { formatDate, getRaysOpponent, getPitcherData, fetchGameContent } from '../../utils/dataUtils'
+import './GameSummary.css'
 
-const GameCard = ({ game }) => {
+/**
+ * 
+ * Displays a card with summary information about a single baseball game.
+ * Shows game date, teams, score, pitcher information, and game content.
+ * Includes functionality to open a modal with detailed game statistics.
+ */
+
+const GameSummary = ({ game }) => {
+  // State to control the detailed stats modal visibility
   const [modalOpen, setModalOpen] = useState(false)
+  // State to store the article/headline content for this game
   const [gameContent, setGameContent] = useState(null)
+  // Loading state for fetching content
   const [loadingContent, setLoadingContent] = useState(false)
+  // Extract opponent info, scores, etc. using utility function
   const gameInfo = getRaysOpponent(game)
   
-  // Fetch game content when component mounts
+  /**
+   * Fetch game content (articles, headlines, images) when component mounts
+   * or when the game prop changes
+   */
   useEffect(() => {
     const getGameContent = async () => {
+      // Only fetch if we have a valid game ID
       if (game && game.gamePk) {
         setLoadingContent(true);
+        // Call the utility function to fetch content from MLB API
         const content = await fetchGameContent(game.gamePk);
         setGameContent(content);
         setLoadingContent(false);
@@ -22,28 +39,46 @@ const GameCard = ({ game }) => {
     };
     
     getGameContent();
-  }, [game])
-  // Not using decision pitchers as they can be inaccurate in spring training games
+  }, [game]) // Re-run if the game prop changes
+  // Get Rays pitcher data based on whether they are home or away team
   const raysPitcher = gameInfo.raysAreAway 
-    ? getPitcherData(game.teams.away.probablePitcher)
-    : getPitcherData(game.teams.home.probablePitcher)
+    ? getPitcherData(game.teams.away.probablePitcher) // Rays are away
+    : getPitcherData(game.teams.home.probablePitcher) // Rays are home
+  
+  // Get opponent pitcher data (opposite of Rays position)
   const opponentPitcher = gameInfo.raysAreAway
-    ? getPitcherData(game.teams.home.probablePitcher)
-    : getPitcherData(game.teams.away.probablePitcher)
+    ? getPitcherData(game.teams.home.probablePitcher) // Opponent is home
+    : getPitcherData(game.teams.away.probablePitcher) // Opponent is away
     
   // Store original pitcher data for detailed view
   if (raysPitcher) {
     raysPitcher.originalData = gameInfo.raysAreAway 
       ? game.teams.away.probablePitcher
       : game.teams.home.probablePitcher
+      
+    // const raysPitcherData = raysPitcher.originalData;
+    // if (raysPitcherData && raysPitcherData.link) {
+    //   console.log('Rays Pitcher API Link:', raysPitcherData.link);
+    //   console.log('Rays Pitcher Full Object:', raysPitcherData);
+    // }
   }
   
   if (opponentPitcher) {
     opponentPitcher.originalData = gameInfo.raysAreAway
       ? game.teams.home.probablePitcher
       : game.teams.away.probablePitcher
+      
+    
+    // const opponentPitcherData = opponentPitcher.originalData;
+    // if (opponentPitcherData && opponentPitcherData.link) {
+    //   console.log('Opponent Pitcher API Link:', opponentPitcherData.link);
+    //   console.log('Opponent Pitcher Full Object:', opponentPitcherData);
+    // }
   }
+
+  //console.log('Game teams data:', game.teams)
   
+ 
   const openModal = () => {
     setModalOpen(true)
   }
@@ -101,16 +136,18 @@ const GameCard = ({ game }) => {
                 </h4>
               )}
               {gameContent.blurb && (
-                <p className="game-blurb">
-                  {gameContent.blurb.substring(0, 150)}...
+                <div className="game-blurb-container">
+                  <p className="game-blurb">
+                    {gameContent.blurb}
+                  </p>
                   {gameContent.url && (
                     <span className="read-more">
                       <a href={gameContent.url} target="_blank" rel="noopener noreferrer">
-                        Read More
+                        Read Full Article
                       </a>
                     </span>
                   )}
-                </p>
+                </div>
               )}
             </div>
           </div>
@@ -137,4 +174,4 @@ const GameCard = ({ game }) => {
   )
 }
 
-export default GameCard
+export default GameSummary

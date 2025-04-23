@@ -1,6 +1,7 @@
 import React from 'react'
+import './GameDetails.css'
 
-const GameDetails = ({ game,  raysPitcher, opponentPitcher }) => {
+const GameDetails = ({ game, raysPitcher, opponentPitcher }) => {
   const getAdvancedPitcherStats = (pitcher) => {
     if (!pitcher) return null
     
@@ -32,9 +33,6 @@ const GameDetails = ({ game,  raysPitcher, opponentPitcher }) => {
       
         </div>
       </div>
-      
- 
-      
       
         <div className="game-pitching-details">
           <h3>Detailed Pitching Stats</h3>
@@ -85,8 +83,6 @@ const GameDetails = ({ game,  raysPitcher, opponentPitcher }) => {
             </div>
           </div>
         </div>
-      
-      
       
     </div>
   )

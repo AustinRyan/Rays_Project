@@ -1,0 +1,54 @@
+/* Base styles for the entire application */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  line-height: 1.6;
+  font-weight: var(--font-weight-normal);
+  color: var(--text-primary);
+  background-color: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.App {
+  text-align: center;
+}
+
+.App h1 {
+  color: var(--rays-navy); /* Rays navy blue */
+  margin-bottom: 2rem;
+}
+
+.games-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-md);
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.no-games-message {
+  text-align: center;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: var(--border-radius-md);
+  color: #666;
+  font-style: italic;
+  border: 1px dashed #ddd;
+}
+
+/* Responsive media queries */
+@media (max-width: 768px) {
+  #root {
+    padding: 1rem;
+  }
+}

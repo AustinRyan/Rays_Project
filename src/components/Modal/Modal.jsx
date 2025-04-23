@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import './Modal.css'
 
 const Modal = ({ isOpen, onClose, children, title }) => {
   // Prevent scrolling when modal is open
@@ -35,9 +36,9 @@ const Modal = ({ isOpen, onClose, children, title }) => {
   
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-container" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h2>{title}</h2>
+          <h3>{title}</h3>
           <button className="modal-close" onClick={onClose}>&times;</button>
         </div>
         <div className="modal-body">
