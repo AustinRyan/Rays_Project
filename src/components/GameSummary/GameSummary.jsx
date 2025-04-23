@@ -112,7 +112,7 @@ const GameSummary = ({ game }) => {
         </div>
         
         <div className="pitchers-container">
-          <PitcherInfo pitcher={raysPitcher} team="Rays" />
+          <PitcherInfo pitcher={raysPitcher} team="Tampa Bay Rays" />
           <PitcherInfo pitcher={opponentPitcher} team={gameInfo.opponent} />
         </div>
         
