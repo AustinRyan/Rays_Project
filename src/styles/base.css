@@ -9,12 +9,18 @@ html, body {
   background-color: var(--background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  box-sizing: border-box;
 }
 
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .App {
@@ -49,6 +55,18 @@ html, body {
 /* Responsive media queries */
 @media (max-width: 768px) {
   #root {
-    padding: 1rem;
+    padding: 1rem 1rem;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  .games-container {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Ensure all content is properly contained */
+  * {
+    max-width: 100%;
   }
 }
